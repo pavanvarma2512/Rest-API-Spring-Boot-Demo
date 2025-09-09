@@ -1,5 +1,6 @@
 package com.varma.restdemo.service.impl;
 
+import com.varma.restdemo.exception.CloudVendorNotFoundException;
 import com.varma.restdemo.model.CloudVendor;
 import com.varma.restdemo.repository.CloudVendorRepository;
 import com.varma.restdemo.service.CloudVendorService;
@@ -37,6 +38,8 @@ public class CloudVendorServiceImpl implements CloudVendorService {
 
     @Override
     public CloudVendor getCloudVendorDetails(String cloudVendorId) {
+        if(cloudVendorRepository.findById(cloudVendorId).isEmpty())
+            throw new CloudVendorNotFoundException("Requested Cloud Vendor Does Not Exist");
         return cloudVendorRepository.findById(cloudVendorId).get();
     }
 
