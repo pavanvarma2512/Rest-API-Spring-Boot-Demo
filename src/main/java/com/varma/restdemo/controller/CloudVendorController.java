@@ -1,8 +1,11 @@
 package com.varma.restdemo.controller;
 
 import com.varma.restdemo.model.CloudVendor;
+import com.varma.restdemo.responce.ResponseHandler;
 import com.varma.restdemo.service.CloudVendorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,14 +21,17 @@ public class CloudVendorController {
     }
 
     @GetMapping("{vendorId}")
-    public CloudVendor getCloudVendorDetails(@PathVariable("vendorId") String vendorId)
+    public ResponseEntity<Object> getCloudVendorDetails(@PathVariable("vendorId") String vendorId)
     {
-        return cloudVendorService.getCloudVendorDetails(vendorId);
+        return ResponseHandler.responseBuilder(
+                "Requested vendor details are here", HttpStatus.OK, cloudVendorService.getCloudVendorDetails(vendorId));
+
     }
 
     @GetMapping()
     public List<CloudVendor> getAllCloudVendorDetails()
     {
+
         return cloudVendorService.getAllCloudVendorDetails();
     }
 
