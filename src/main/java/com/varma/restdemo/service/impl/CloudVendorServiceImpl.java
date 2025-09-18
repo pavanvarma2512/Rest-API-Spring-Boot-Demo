@@ -21,13 +21,13 @@ public class CloudVendorServiceImpl implements CloudVendorService {
     @Override
     public String createCloudVendor(CloudVendor cloudVendor) {
         cloudVendorRepository.save(cloudVendor);
-        return "success";
+        return "Success";
     }
 
     @Override
     public String updateCloudVendor(CloudVendor cloudVendor) {
         cloudVendorRepository.save(cloudVendor);
-        return "success";
+        return "Success";
     }
 
     @Override
